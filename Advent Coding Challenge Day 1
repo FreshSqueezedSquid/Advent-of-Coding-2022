@@ -1,0 +1,49 @@
+def calorie_count(filename):
+    
+    with open(filename) as file:
+        lines = file.readlines()
+
+        cals = 0
+        max_cals = 0
+        #iterates over each line in file
+        for line in lines:
+            #returns True if a string is present...False if there is not
+            if line.strip():
+                cals += int(line.strip())
+            else:
+                if cals > max_cals:
+                    #replaces value of max_cal with cals if cals is greater
+                    max_cals = cals
+                #resets cals to zero...line.strip() returns False and resets cals
+                cals = 0
+    return max_cals
+
+print(calorie_count("Day1TestData.txt")) # This is
+print(calorie_count("Dataset2.txt")) #should be 6000...code is skipping something, but not enough
+                                     #to effect outcome here
+print(calorie_count("ACD1D.txt")) # This is correct
+
+#finds top 3 calorie counts
+def top3_elves(filename):
+
+    with open(filename) as file:
+        lines = file.readlines()
+
+        cals = 0
+        max_cal_list = []
+
+        for line in lines:
+            if line.strip():
+                cals += int(line.strip())
+            elif not line.strip():
+                max_cal_list.append(cals)
+                cals = 0  
+            #max_cal_list.append(cals)
+    #sorts max calorie counts from lowest to highest
+    max_cal_list.sort()
+    #returns the sum value of the last three entries on list....three highest counts
+    return sum(max_cal_list[-3:])
+
+print(top3_elves("Day1TestData.txt")) #missing 4000
+print(top3_elves("Dataset2.txt")) #should be 15000
+print(top3_elves("ACD1D.txt")) # 203194...answer still too low

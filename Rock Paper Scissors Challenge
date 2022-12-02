@@ -1,0 +1,95 @@
+def rps_cheat_codes(filename):
+    with open(filename) as file:
+        lines = file.readlines()
+
+        points = 0
+        win = 0
+        lose = 0
+        draw = 0
+    
+        for line in lines:
+            # 'a' and 'x' = ROCK...'b' and 'y' = PAPER...'c' and 'z' = SCISSORS
+            line = line.strip()
+            #all possible 'a' combinations
+            if line.lower() == 'a y':
+                points += 8
+                win += 1
+            elif line.lower() == 'a z':
+                points += 3
+                lose += 1
+            elif line.lower() == 'a x':
+                points += 4
+                draw += 1
+            #all possible 'b' combinations
+            elif line.lower() == 'b y':
+                points += 5
+                draw += 1
+            elif line.lower() == 'b z':
+                points += 9
+                win += 1
+            elif line.lower() == 'b x':
+                points += 1
+                lose += 1
+            #all possible 'c' combinations
+            elif line.lower() == 'c y':
+                points += 2
+                lose += 1
+            elif line.lower() == 'c z':
+                points += 6
+                draw += 1
+            elif line.lower() == 'c x':
+                points += 7
+                win += 1
+
+        return points, win, lose, draw
+
+print(rps_cheat_codes('Day 2 TestData.txt'))
+print(rps_cheat_codes('Day 2 TournamentData.txt'))
+
+def top_secret_code(filename):
+    with open(filename) as file:
+        lines = file.readlines()
+
+        points = 0
+        win = 0
+        lose = 0
+        draw = 0
+
+        for line in lines:
+            # 'y' = DRAW...'x' = LOSE...'z' = WIN
+            line = line.strip()
+            #all possible 'a' combinations
+            if line.lower() == 'a y':
+                points += 4
+                draw += 1
+            elif line.lower() == 'a z':
+                points += 8
+                win += 1
+            elif line.lower() == 'a x':
+                points += 3
+                lose += 1
+            #all possible 'b' combinations
+            elif line.lower() == 'b y':
+                points += 5
+                draw += 1
+            elif line.lower() == 'b z':
+                points += 9
+                win += 1
+            elif line.lower() == 'b x':
+                points += 1
+                lose += 1
+            #all possible 'c' combinations
+            elif line.lower() == 'c y':
+                points += 6
+                draw += 1
+            elif line.lower() == 'c z':
+                points += 7
+                win += 1
+            elif line.lower() == 'c x':
+                points += 2
+                lose += 1
+
+        return points, win, lose, draw
+
+print(top_secret_code('Day 2 TestData.txt'))
+print(top_secret_code('Day 2 TournamentData.txt'))

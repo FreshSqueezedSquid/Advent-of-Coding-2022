@@ -1,0 +1,29 @@
+def item_priority(letter):
+    import string
+    #creates a list with both upper/lower case letters....a-z and A-Z
+    alphabet = list(string.ascii_letters)
+    # +1 to item_score to account for index[0]
+    item_score = alphabet.index(letter)+1
+    return item_score
+
+
+def elf_TSA(filename):
+    with open(filename) as file:
+        lines = file.readlines()
+        
+        priority = 0
+
+        for line in lines:
+            length = len(line.strip())
+            #floor division in case we divide an odd number by 2
+            first_half = line[:length//2]
+            second_half = line[length//2:]
+
+            for letter in first_half:
+                if letter in second_half:
+                    priority += item_priority(letter)
+                    break
+    return priority
+
+print(elf_TSA('Day 3 Test Data.txt'))
+print(elf_TSA('Elf TSA Data.txt'))
